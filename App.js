@@ -4,6 +4,7 @@ import { SplashScreen } from './src/screens/SplashScreen';
 import { useFonts } from 'expo-font';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/styles/theme'
+import { Container } from './src/components/Container';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -18,19 +19,10 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <View style={styles.container}>
+      <Container align='center' justify='center'>
         <SplashScreen />
         <StatusBar style="auto" />
-      </View>
+      </Container>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#161616',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
