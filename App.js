@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import logoImage from './assets/LogoSplash.png'
+import { SplashScreen } from './src/screens/SplashScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <SplashScreen />
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +15,18 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#161616',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // logo: {
+  //   width: 64,
+  //   height: 64,
+  // },
+  // title: {
+  //   fontSize: 24,
+  //   fontWeight: 'bold',
+  //   color: '#fff',
+  //   marginTop: 12,
+  // },
 });
