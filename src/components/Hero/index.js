@@ -7,11 +7,11 @@ import { IconButton } from "../IconButton";
 import { PlayButton } from "../PlayButton";
 
 export function Hero({ item }){
-    const { imageUrl, title, subtitle, type } = item
+    const { image_url, title, subtitle, type } = item
 
     return(
         <HeroContainer>
-            <HeroImageBackground source={{ uri: imageUrl }}>
+            <HeroImageBackground source={{ uri: image_url }}>
                 <HeroGradient colors={[colors.dark, 'transparent', colors.dark]} >
                     <Logo size="small" />
                     <Tag  mt={200}>{type}</Tag>
