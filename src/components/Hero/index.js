@@ -6,15 +6,17 @@ import { Tag } from "../Tag";
 import { IconButton } from "../IconButton";
 import { PlayButton } from "../PlayButton";
 
-export function Hero(){
+export function Hero({ item }){
+    const { imageUrl, title, subtitle, type } = item
+
     return(
         <HeroContainer>
-            <HeroImageBackground source={{ uri: 'https://forbes.com.br/wp-content/uploads/2021/04/ForbesLife_StarWars7_160421_Divulgac%CC%A7ao-768x512.jpg' }}>
+            <HeroImageBackground source={{ uri: imageUrl }}>
                 <HeroGradient colors={[colors.dark, 'transparent', colors.dark]} >
                     <Logo size="small" />
-                    <Tag  mt={200}>Filme</Tag>
-                    <CustomText size={28} mt={12}>Episódio I</CustomText>
-                    <CustomText size={18} weight="400">A Ameaça Fantasma</CustomText>
+                    <Tag  mt={200}>{type}</Tag>
+                    <CustomText size={28} mt={12}>{title}</CustomText>
+                    <CustomText size={18} weight="400">{subtitle}</CustomText>
 
                     <ButtonsView>
                         <IconButton label="Favoritos" iconName="add-circle-outline" />
