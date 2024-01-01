@@ -6,22 +6,27 @@ import { Tag } from "../Tag";
 import { IconButton } from "../IconButton";
 import { PlayButton } from "../PlayButton";
 
-export function Hero({ item }){
+export function Hero({ item, onDetailPage }){
     const { image_url, title, subtitle, type } = item
 
     return(
         <HeroContainer>
             <HeroImageBackground source={{ uri: image_url }}>
                 <HeroGradient colors={[colors.dark, 'transparent', colors.dark]} >
-                    <Logo size="small" />
-                    <Tag  mt={200}>{type}</Tag>
+                    {
+                        !onDetailPage && <Logo size="small" />
+                    }
+                    <Tag  mt={onDetailPage ? 224 : 200}>{type}</Tag>
                     <CustomText size={28} mt={12}>{title}</CustomText>
                     <CustomText size={18} weight="400">{subtitle}</CustomText>
 
                     <ButtonsView>
                         <IconButton label="Favoritos" iconName="add-circle-outline" />
                         <PlayButton />
-                        <IconButton label="Saiba mais" iconName="information-circle-outline" />
+                        {
+                            !onDetailPage && <IconButton label="Saiba mais" iconName="information-circle-outline" />
+                        }
+                        
                     </ButtonsView>
                 </HeroGradient>
             </HeroImageBackground>
