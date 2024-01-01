@@ -18,3 +18,10 @@ export const HeroGradient = styled(LinearGradient)`
     padding-horizontal: ${({ theme }) => theme.metrics.px(24)}px;
     padding-top: ${({ theme }) => theme.metrics.px(56)}px;
 `
+
+export const ButtonsView = styled.View`
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: ${({ theme }) => theme.metrics.px(8)}px;
+`
