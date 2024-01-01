@@ -1,8 +1,8 @@
 import { Title } from "./styles";
 
-export function CustomText({ children, color }){
+export function CustomText({ children, ...props }){
     return(
-        <Title color={color}>
+        <Title {...props}>
             {children}
         </Title>
     )

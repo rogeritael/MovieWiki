@@ -1,8 +1,11 @@
 import styled from "styled-components/native";
 
 export const Title = styled.Text`
-    font-family: 'SourceSans700';
-    font-size: ${({ theme }) => theme.metrics.px(24)};
+    font-family: ${({ theme, weight }) => weight? `SourceSans${weight}` : 'SourceSans700'};
+    font-size: ${({ theme, size }) => theme.metrics.px(size || 24)}px;
     color: ${({ theme }) => theme.colors.light || '#fff'};
-    margin-top: ${({ theme }) => theme.metrics.px(12)};;
+    margin-top: ${({ theme, mt }) => theme.metrics.px(mt || 0)}px;
+    margin-bottom: ${({ theme, mb }) => theme.metrics.px(mb || 0)}px;
+    margin-left: ${({ theme, ml }) => theme.metrics.px(ml || 0)}px;
+    margin-right: ${({ theme, mr }) => theme.metrics.px(mr || 0)}px;
 `

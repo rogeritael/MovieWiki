@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
 export const LogoImage = styled.Image`
-    width: 64px;
-    height: 64px;
+    width: ${({ size, theme }) => theme.metrics.px(size)}px;
+    height: ${({ size, theme }) => theme.metrics.px(size)}px;
 `
