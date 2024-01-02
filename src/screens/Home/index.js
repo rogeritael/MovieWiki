@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { Card } from "../../components/Card";
 import { ScreenScrollContainer } from "../../components/Container";
 import { Hero } from "../../components/Hero";
 import { HomeList } from "../../components/HomeList";
+import { useGetData } from "../../services/hooks/useGetData";
+import { CustomText } from "../../components/CustomText";
 
 const characters_mock = [
     {
@@ -23,7 +26,28 @@ const characters_mock = [
 ]
 
 export function Home(){
+    const { getFilms, getCharacters } = useGetData()
+    const [loading, setLoading] = useState(true)
+    const [films, setFilms] = useState([])
+    const [characters, setCharacters] = useState([])
+    
+    async function callGetData(){
+        const filmsResponse = await getFilms()
+        const charactersResponse = await getCharacters()
+
+        if(!filmsResponse.error && !charactersResponse.error){
+            setFilms(filmsResponse)
+            setCharacters(charactersResponse)
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        callGetData()
+    }, [])
+    
     return(
+        !loading &&
         <ScreenScrollContainer>
             <Hero
                 item={{
@@ -33,8 +57,9 @@ export function Home(){
                     image_url: 'https://forbes.com.br/wp-content/uploads/2021/04/ForbesLife_StarWars7_160421_Divulgac%CC%A7ao-768x512.jpg'
                 }}
             />
-            <HomeList data={characters_mock} title="Filmes"/>
-            <HomeList data={characters_mock} title="Personagens"/>
+            <HomeList data={films} title="Filmes"/>
+            <HomeList data={characters} title="Personagens"/>
+            <CustomText color="#fff">a {characters.length}</CustomText>
         </ScreenScrollContainer>
     )
 }
