@@ -5,9 +5,40 @@ import { Logo } from "../Logo";
 import { Tag } from "../Tag";
 import { IconButton } from "../IconButton";
 import { PlayButton } from "../PlayButton";
+import { useFavorites } from "../../services/hooks";
+import { useEffect, useMemo, useState } from "react";
 
 export function Hero({ item, onDetailPage }){
     const { image_url, title, subtitle, type } = item
+    const { addFavorites, getFavorites, removeFavorite } = useFavorites()
+    const [loading, setLoading] = useState(true)
+    const [isFavorite, setIsFavorite] = useState(false)
+
+    async function checkIsFavorite(){
+        setLoading(true)
+        const favorites = await getFavorites()
+        const isInFavorites = favorites.filter(
+            (fv) => fv.id === item.id && fv.type === item.type
+        )
+
+        if(isInFavorites.length > 0) setIsFavorite(true)
+
+        setLoading(false)
+    }
+
+    async function addDataToFavorite(){
+        await addFavorites(item)
+        checkIsFavorite()
+    }
+
+    async function removeDataToFavorite(){
+        await removeFavorite(item)
+        checkIsFavorite()
+    }
+
+    useEffect(() => {
+        checkIsFavorite()
+    }, [])
 
     return(
         <HeroContainer>
@@ -21,7 +52,11 @@ export function Hero({ item, onDetailPage }){
                     <CustomText size={18} weight="400">{subtitle}</CustomText>
 
                     <ButtonsView>
-                        <IconButton label="Favoritos" iconName="add-circle-outline" />
+                        <IconButton
+                            onPress={() => isFavorite ? removeDataToFavorite() : addDataToFavorite()}
+                            label={isFavorite ? 'Remove Favoritos' : 'Add Favoritos'}
+                            iconName={isFavorite ? 'remove-circle-outline' : 'add-circle-outline'}
+                        />
                         <PlayButton />
                         {
                             !onDetailPage && <IconButton label="Saiba mais" iconName="information-circle-outline" />

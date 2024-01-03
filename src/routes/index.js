@@ -58,7 +58,7 @@ export const Routes = () => {
     const Stack = createNativeStackNavigator();
 
     return(
-        <NavigationContainer>
+        <NavigationContainer >
             <Stack.Navigator>
                 <Stack.Screen options={options} name="splash" component={SplashScreen}/>
                 <Stack.Screen options={options} name="home" component={Tabs}/>
